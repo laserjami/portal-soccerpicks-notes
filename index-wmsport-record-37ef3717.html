@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>完美体育 · 信息卡片介绍</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f6fafc;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1f2e3a;
+      line-height: 1.6;
+      padding: 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* 主视觉 Hero */
+    .hero {
+      background: linear-gradient(140deg, #d9f0f5 0%, #b3dfe8 100%);
+      border-radius: 2.5rem;
+      padding: 3rem 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 12px 30px rgba(27, 74, 84, 0.08);
+      text-align: center;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #0c3c47;
+    }
+
+    .hero h1 span {
+      background: #ffffffaa;
+      padding: 0.1rem 0.6rem;
+      border-radius: 30px;
+      font-weight: 400;
+    }
+
+    .hero .sub {
+      margin-top: 1.2rem;
+      font-size: 1.1rem;
+      color: #1a4e5c;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #ffffff60;
+      backdrop-filter: blur(2px);
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+    }
+
+    /* 网格卡片布局 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 1.6rem;
+      padding: 2rem 1.6rem;
+      box-shadow: 0 8px 20px rgba(30, 70, 80, 0.04);
+      border: 1px solid #e0eef2;
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+
+    .card:hover {
+      box-shadow: 0 12px 28px rgba(26, 76, 85, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .card .icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      background: #d9f0f5;
+      width: 50px;
+      height: 50px;
+      border-radius: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #0a3b46;
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin: 1rem 0 0.6rem;
+      color: #0c3d48;
+    }
+
+    .card p {
+      color: #2f4b56;
+      font-size: 0.95rem;
+    }
+
+    .card .tag {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      background: #e4f2f6;
+      color: #106372;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      letter-spacing: 0.02em;
+    }
+
+    /* 适合人群卡片（两列） */
+    .audience-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (max-width: 680px) {
+      .audience-section {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .audience-card {
+      background: #ffffff;
+      border-radius: 1.6rem;
+      padding: 1.8rem 1.6rem;
+      border: 1px solid #dbe8ed;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    }
+
+    .audience-card h4 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #0b3b46;
+      margin-bottom: 0.8rem;
+      border-left: 4px solid #4cb3c9;
+      padding-left: 0.8rem;
+    }
+
+    .audience-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .audience-card li {
+      padding: 0.4rem 0;
+      font-size: 0.95rem;
+      color: #1b4350;
+      position: relative;
+      padding-left: 1.4rem;
+    }
+
+    .audience-card li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: #3fafc5;
+      font-weight: bold;
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    /* 自然链接段落 */
+    .link-block {
+      background: #edf6f9;
+      border-radius: 2rem;
+      padding: 2.2rem 2rem;
+      margin-bottom: 2.8rem;
+      border: 1px solid #cde2e9;
+    }
+
+    .link-block p {
+      font-size: 1.02rem;
+      color: #173743;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    .link-block a {
+      color: #0f6a7c;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid #7dc1d4;
+      transition: border-color 0.2s;
+    }
+
+    .link-block a:hover {
+      border-bottom-color: #0c5768;
+    }
+
+    /* FAQ 摘要 — 简约卡片 */
+    .faq-mini {
+      background: #ffffff;
+      border-radius: 1.8rem;
+      padding: 2rem 1.8rem;
+      margin-bottom: 2rem;
+      border: 1px solid #ddecf1;
+    }
+
+    .faq-mini h3 {
+      font-weight: 500;
+      font-size: 1.3rem;
+      color: #06313d;
+      margin-bottom: 1.5rem;
+    }
+
+    .faq-item {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #e4f0f4;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 500;
+      color: #0a3d49;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-item p {
+      color: #2c5563;
+      font-size: 0.92rem;
+    }
+
+    /* 页脚细线 */
+    .footnote {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #6e8f9c;
+      border-top: 1px solid #d2e4ea;
+      padding-top: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero .sub {
+        font-size: 0.95rem;
+      }
+      .card-grid {
+        gap: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- 主视觉 -->
+    <div class="hero">
+      <h1>· 稳定入口 ·<br><span>完美体育</span></h1>
+      <div class="sub">信息卡片 · 页面说明 · 自然叙述</div>
+    </div>
+
+    <!-- 用途卡片网格 -->
+    <div class="card-grid">
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h3>稳定访问</h3>
+        <p>持续维护的访问路径，减少频繁变动的困扰。针对不同网络环境提供相对可靠的入口说明。</p>
+        <span class="tag">直达 · 说明</span>
+      </div>
+      <div class="card">
+        <div class="icon">🧩</div>
+        <h3>信息聚合</h3>
+        <p>将常见用途、场景和人群需求进行卡片化整理，方便快速理解整体页面结构。</p>
+        <span class="tag">概览</span>
+      </div>
+      <div class="card">
+        <div class="icon">🔄</div>
+        <h3>自然过渡</h3>
+        <p>页面内容围绕如何更顺畅地找到所需信息展开，不堆砌术语，保持克制的叙述感。</p>
+        <span class="tag">风格</span>
+      </div>
+    </div>
+
+    <!-- 适合人群（两列） -->
+    <div class="audience-section">
+      <div class="audience-card">
+        <h4>日常使用者</h4>
+        <ul>
+          <li>希望有一个相对固定的页面作为参考</li>
+          <li>习惯先浏览卡片式信息再做决定</li>
+          <li>偏好干净、低干扰的阅读界面</li>
+        </ul>
+      </div>
+      <div class="audience-card">
+        <h4>初次接触者</h4>
+        <ul>
+          <li>对页面结构和用途不太熟悉</li>
+          <li>需要一份简洁的说明来了解基本模块</li>
+          <li>倾向于通过自然段落而非弹窗获取信息</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 自然链接段落（嵌入关键词） -->
+    <div class="link-block">
+      <p>
+        如果你正在寻找一个关于稳定入口和页面说明的集中参考，可以了解一下
+        <a href="https://index-wmsport.com">完美体育</a>。
+        这个页面从信息卡片的角度梳理了主要用途、适合人群以及常见问题摘要，
+        整体语气保持自然与克制，没有多余的跳转或诱导。
+      </p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+      <h3>常见问题 · 摘要</h3>
+      <div class="faq-item">
+        <strong>这个页面主要提供什么？</strong>
+        <p>一个偏向介绍性质的卡片式页面，包含主视觉、用途分类、适用人群以及相关说明段落，方便快速了解整体结构。</p>
+      </div>
+      <div class="faq-item">
+        <strong>是否有额外的跳转或推广？</strong>
+        <p>页面内仅包含一个指向相关站点的自然链接，无弹窗、无强制跳转，所有内容均以信息展示为主。</p>
+      </div>
+      <div class="faq-item">
+        <strong>卡片信息的更新频率如何？</strong>
+        <p>根据实际使用反馈和结构变化进行调整，保持卡片内容的时效性和清晰度，但不承诺频繁更新。</p>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footnote">
+      信息卡片式介绍 · 基于稳定入口与页面说明 · d95b85c89506a2ae
+    </div>
+  </div>
+</body>
+</html>
